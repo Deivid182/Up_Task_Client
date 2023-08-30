@@ -16,10 +16,8 @@ export default function EditProject() {
   if (loading) return "Loading...";
 
   const handleClick = async () => {
-    if(confirm("Are you sure?")) {
+    if (confirm("Are you sure?")) {
       await deleteProject(params._id)
-    } else {
-      console.log("no")
     }
   }
 
@@ -29,7 +27,9 @@ export default function EditProject() {
         <div className="font-black text-4xl capitalize">
           EditProyect: {name}{" "}
         </div>
-        <div className="flex gap-3 bg-red-600 text-white py-2 px-4 rounded-md ">
+        <button
+          onClick={handleClick}
+          className="flex gap-3 bg-red-600 text-white py-2 px-4 rounded-md cursor-pointer ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -45,8 +45,8 @@ export default function EditProject() {
             />
           </svg>
 
-          <button type="button" className="font-bold uppercase cursor-pointer" onClick={handleClick}>Delete</button>
-        </div>
+          <div type="button" className="font-bold uppercase">Delete</div>
+        </button>
       </div>
 
       <div className="mt-10 flex justify-center">

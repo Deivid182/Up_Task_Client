@@ -3,7 +3,7 @@ import { useProjects } from "../hooks/useProjects";
 import Alert from "../components/Alert";
 
 const Projects = () => {
-  
+
   const { projects, alert } = useProjects();
 
   const { msg } = alert
@@ -14,12 +14,12 @@ const Projects = () => {
 
       {msg && <Alert alert={alert} />}
 
-      <div className="bg-white shadow mt-10 w-[920px] mx-auto  rounded-lg p-2">
+      <div className="bg-white shadow mt-10 max-w-full mx-auto  rounded-lg p-2">
         {projects?.length ? (
           <>
-          {projects.map(project => (
-            <ProjectPreview key={project._id} project={project} />
-          ))}
+            {projects.map(project => (
+              <ProjectPreview key={project._id} project={project} />
+            ))}
           </>
         ) : (
           <div className="flex flex-col items-center justify-center">

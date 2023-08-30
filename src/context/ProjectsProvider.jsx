@@ -44,7 +44,7 @@ export const ProjectsProvider = ({ children }) => {
       }
     };
     getProjects();
-  }, [auth]);
+  }, []);
 
   useEffect(() => {
     socket = io(import.meta.env.VITE_SERVER_URL);
@@ -119,7 +119,6 @@ export const ProjectsProvider = ({ children }) => {
       };
 
       const { data } = await axiosClient.post("/projects", project, config);
-      //this prevents to perform another query
       setProjects([...projects, data]);
 
       setAlert({
@@ -296,11 +295,11 @@ export const ProjectsProvider = ({ children }) => {
       });
 
       setDeleteModal(false);
-      
+
       setTimeout(() => {
         setAlert({});
       }, 2000);
-      
+
       socket.emit("delete task", task)
       setTask({});
     } catch (error) {
@@ -356,7 +355,6 @@ export const ProjectsProvider = ({ children }) => {
         email,
         config
       );
-      console.log(data);
 
       setAlert({
         msg: data.msg,
@@ -433,7 +431,7 @@ export const ProjectsProvider = ({ children }) => {
 
       const { data } = await axiosClient.post(`/tasks/state/${id}`, {}, config);
 
-      
+
       setTask({});
       setAlert({});
       //socket
@@ -458,29 +456,29 @@ export const ProjectsProvider = ({ children }) => {
   const deleteTaskProject = task => {
     const updatedProject = { ...project };
 
-      updatedProject.tasks = updatedProject.tasks.filter(
-        (taskState) => taskState._id !== task._id
-      );
+    updatedProject.tasks = updatedProject.tasks.filter(
+      (taskState) => taskState._id !== task._id
+    );
 
-      setProject(updatedProject);
+    setProject(updatedProject);
   }
 
   const updateTaskProject = task => {
 
     const updatedProject = { ...project };
-      updatedProject.tasks = updatedProject.tasks.map((taskState) =>
-        taskState._id === task._id ? task : taskState
-      );
-      setProject(updatedProject);
+    updatedProject.tasks = updatedProject.tasks.map((taskState) =>
+      taskState._id === task._id ? task : taskState
+    );
+    setProject(updatedProject);
   }
 
   const changeTaskState = task => {
     const updatedProject = { ...project };
 
-      updatedProject.tasks = updatedProject.tasks.map((taskState) =>
-        taskState._id === task._id ? task : taskState
-      );
-      setProject(updatedProject);
+    updatedProject.tasks = updatedProject.tasks.map((taskState) =>
+      taskState._id === task._id ? task : taskState
+    );
+    setProject(updatedProject);
   }
 
   const logOutProjects = () => {

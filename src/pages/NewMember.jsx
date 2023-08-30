@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import FormMember from "../components/FormMember";
 import { useProjects } from "../hooks/useProjects";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 
 export default function NewMember() {
 
   const { getProject, project, loading, member, newMember, alert } = useProjects()
   const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProject(params._id)
-  }, [])
+  }, [params._id])
 
-  if(!project?._id) return <Alert alert={alert} />
+  if (!project?._id) return <Alert alert={alert} />
 
   return (
     <>
@@ -32,7 +33,13 @@ export default function NewMember() {
               <p> {member.name} </p>
 
               <button
-                onClick={() => newMember({email: member.email})}
+                onClick={() => {
+                  newMember({ email: member.email })
+                  setTimeout(() => {
+                    navigate(`/projects/${params._id}`)
+                  }, 2000)
+                }
+                }
                 type="button"
                 className="bg-slate-500 px-5 py-2 uppercase font-bold text-white rounded-md text-sm hover:bg-slate-700 transition-colors"
               >Add to Project</button>

@@ -18,24 +18,34 @@ export default function SignUp() {
       setAlert({
         msg: "All fields are required",
         error: true
-      })      
+      })
+      setTimeout(() => {
+        setAlert({})
+      }, 2000)
       return
-      
     }
 
-    if(password !== repeatPassword) {
+    if (password !== repeatPassword) {
       setAlert({
         msg: "Your passwords do not match",
         error: true
       })
+
+      setTimeout(() => {
+        setAlert({})
+      }, 2000)
       return
     }
 
-    if(password.length < 6) {
+    if (password.length < 6) {
       setAlert({
         msg: "Your password is too short. It must be at least 6 characteres so try again",
         error: true
       })
+
+      setTimeout(() => {
+        setAlert({})
+      }, 2000)
       return
     }
 
@@ -44,8 +54,8 @@ export default function SignUp() {
     //fetch data
 
     try {
-      
-      const { data } = await axiosClient.post(`/users`, {name, email, password}) 
+
+      const { data } = await axiosClient.post(`/users`, { name, email, password })
 
       console.log(data)
       setAlert({
@@ -61,6 +71,10 @@ export default function SignUp() {
         msg: error.response.data.msg,
         error: true
       })
+    } finally {
+      setTimeout(() => {
+        setAlert({})
+      }, 2000)
     }
 
   }
@@ -69,22 +83,27 @@ export default function SignUp() {
 
   return (
     <>
-      <h1 className="text-6xl capitalize font-black text-center">Sign Up</h1>
+      <h1
+        data-cy="signup-heading"
+        className="text-6xl capitalize font-black text-center">Sign Up</h1>
       <p className="text-center mt-5 font-light ">
         By signing up, I agree to UpTask&apos;s Privacy Policy and Terms of
         Service .
       </p>
 
 
-      {msg && <Alert  alert={alert} />}
+      {msg && <Alert datacy={"signup-alert"} alert={alert} />}
 
-      <form id="form" onSubmit={handleSubmit} className="my-5">
+      <form
+        data-cy="signup-form"
+        id="form" onSubmit={handleSubmit} className="my-5">
         <input
           type="text"
           placeholder="Name"
           className="w-full mt-3 p-3 rounded-lg border-2 border-solid border-gray-600 "
           value={name}
           onChange={(e) => setName(e.target.value)}
+          data-cy="signup-name-input"
         />
 
         <input
@@ -93,6 +112,7 @@ export default function SignUp() {
           className="w-full mt-3 p-3 rounded-lg border-2 border-solid border-gray-600 "
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          data-cy="signup-email-input"
         />
 
         <input
@@ -101,6 +121,7 @@ export default function SignUp() {
           className="w-full mt-3 p-3 rounded-lg border-2 border-solid border-gray-600 "
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          data-cy="signup-password-input"
         />
 
         <input
@@ -109,11 +130,13 @@ export default function SignUp() {
           className="w-full mt-3 p-3 rounded-lg border-2 border-solid border-gray-600 "
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
+          data-cy="signup-repeat-password-input"
         />
 
         <input
           type="submit"
           value={"Sign Up"}
+          data-cy="signup-submit"
           className="w-full mt-3 p-3 rounded-lg bg-black text-white hover:text-black hover:bg-sky-600 transition-colors cursor-pointer"
         />
       </form>

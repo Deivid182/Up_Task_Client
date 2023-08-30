@@ -78,14 +78,14 @@ export default function Project() {
       </div>
     );
 
-  console.log(project);
-
   return (
     <>
       <div className="flex justify-between items-center">
         <h1 className="font-black text-4xl capitalize"> {name} </h1>
         {admin && (
-          <div className="flex gap-4 p-2 bg-sky-600 rounded-md text-white">
+          <Link
+            to={`/projects/edit/${_id}`}
+            className="flex gap-4 p-2 bg-sky-600 rounded-md text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -100,14 +100,8 @@ export default function Project() {
                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
               />
             </svg>
-
-            <Link
-              to={`/projects/edit/${_id}`}
-              className="cursor-pointer font-bold"
-            >
-              Edit
-            </Link>
-          </div>
+            <p className="text-sm text-white">Edit</p>
+          </Link>
         )}
       </div>
 
@@ -150,7 +144,9 @@ export default function Project() {
           <div className="flex items-center justify-between mt-10">
             <p className="font-bold uppercase text-gray-500 text-xl">Members</p>
 
-            <div className="flex gap-4 p-2 bg-sky-700 rounded-md text-white">
+            <Link
+              to={`/projects/new-member/${project._id}`}
+              className="flex gap-4 p-2 bg-sky-700 rounded-md text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -165,14 +161,8 @@ export default function Project() {
                   d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
                 />
               </svg>
-
-              <Link
-                to={`/projects/new-member/${project._id}`}
-                className="cursor-pointer font-bold"
-              >
-                Add
-              </Link>
-            </div>
+              <span className="text-lg font-bold text-white">New Member</span>
+            </Link>
           </div>
 
           <div className="bg-white shadow mt-5 rounded-lg">

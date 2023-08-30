@@ -10,3 +10,4 @@ export const formatDate = date => {
 
   return newDate.toLocaleDateString("es-ES", options)
 }
+

@@ -6,7 +6,7 @@ export default function Sidebar() {
   //console.log(auth)
 
   return (
-    <aside className="w-full flex flex-col items-center justify-center md:block    md:w-2/5 lg:w-1/5 xl:w-1/6 px-3 py-5 border-r">
+    <aside className="w-full flex flex-col items-center justify-center md:block md:w-2/5 lg:w-1/5 xl:w-1/6 px-3 py-5 border-r">
       <p className="text-xl font-bold">Hi, {auth.name} </p>
 
       <Link

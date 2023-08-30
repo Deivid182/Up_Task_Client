@@ -3,8 +3,7 @@ import { axiosClient } from "../config/axios";
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
-
+export const AuthProvider = ({ children }) => {
 
   const [auth, setAuth] = useState({})
   const [loading, setLoading] = useState(true)
@@ -13,12 +12,12 @@ export const AuthProvider = ({children}) => {
 
     const authUser = async () => {
       const token = localStorage.getItem("token")
-  
-      if(!token) {
+
+      if (!token) {
         setLoading(false)
         return
       }
-      
+
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -28,6 +27,7 @@ export const AuthProvider = ({children}) => {
 
       try {
         const { data } = await axiosClient("/users/profile", config)
+
         setAuth(data)
       } catch (error) {
         setAuth({})
@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{setAuth, auth, loading, logOut}}
+      value={{ setAuth, auth, loading, logOut }}
     >
       {children}
     </AuthContext.Provider>

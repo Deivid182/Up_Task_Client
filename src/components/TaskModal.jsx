@@ -9,7 +9,7 @@ const TaskModal = () => {
 
   const { taskFormModal, handleModal, showAlert, alert, submitTask, task } =
     useProjects();
-  
+
   const [id, setId] = useState(null)
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +19,7 @@ const TaskModal = () => {
   const OPTIONS = ["low", "medium", "high"];
 
   useEffect(() => {
-    if(task?._id){
+    if (task?._id) {
       setId(task._id)
       setName(task.name)
       setDescription(task.description)
@@ -74,7 +74,6 @@ const TaskModal = () => {
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"

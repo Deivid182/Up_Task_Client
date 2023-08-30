@@ -7,11 +7,11 @@ import Header from "../components/Header"
 export default function ProtectedRoute() {
 
   const { auth, loading } = useAuth()
-  if(loading) return "Loading..."
+  if (loading) return "Loading..."
 
   return (
     <>
-      {auth._id ? 
+      {auth._id ?
         (
           <div>
             <Header />
@@ -27,7 +27,7 @@ export default function ProtectedRoute() {
 
           </div>
         )
-      : <Navigate to={"/"}/>} 
+        : <Navigate to={"/"} />}
     </>
   )
 }

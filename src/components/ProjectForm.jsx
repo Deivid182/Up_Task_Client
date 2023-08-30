@@ -17,27 +17,27 @@ export default function ProjectForm() {
 
   useEffect(() => {
 
-    if(params._id) { 
+    if (params._id) {
       setId(project._id)
       setName(project.name)
       setDescription(project.description)
       setDeadline(project.deadline?.split("T")[0])
       setCustomer(project.customer)
     }
-  }, [params])
+  }, [params._id, project])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if([name, description, deadline, customer].includes("")) {
+    if ([name, description, deadline, customer].includes("")) {
       showAlert({
         msg: "All fields are required",
         error: true
       })
     }
 
-    await submitProject({ id, name, description, deadline, customer})
+    await submitProject({ id, name, description, deadline, customer })
     setId(null)
     setName("")
     setDescription("")
@@ -116,7 +116,7 @@ export default function ProjectForm() {
         />
 
         <input type="submit"
-        value={project._id ? "Update Project" : "Create Project"} 
+          value={params._id ? "Update Project" : "Create Project"}
           className="w-full mt-3 cursor-pointer text-white px-5 py-2 rounded-md font-bold text-xl bg-sky-600 hover:bg-sky-800 transition-colors"
         />
 
