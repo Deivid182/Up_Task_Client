@@ -5,7 +5,6 @@ import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import NewPassword from "./pages/NewPassword";
 import ConfirmAccount from "./pages/ConfirmAccount";
-import { Toaster } from "react-hot-toast";
 
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import Projects from "./pages/Projects";
@@ -40,7 +39,6 @@ export default function App() {
               <Route path="new-member/:_id" element={<NewMember />} />
             </Route>
           </Routes>
-          <Toaster />
         </ProjectsProvider>
       </AuthProvider>
     </BrowserRouter>
