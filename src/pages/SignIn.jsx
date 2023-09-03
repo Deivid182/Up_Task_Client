@@ -12,7 +12,7 @@ export default function SignIn() {
   const { setAuth, auth } = useAuth()
   useEffect(() => {
     if (auth._id) navigate('/projects')
-  }, [auth._id, navigate])
+  }, [auth?._id, navigate])
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

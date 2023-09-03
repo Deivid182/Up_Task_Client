@@ -1,6 +1,7 @@
-import { Fragment} from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useProjects } from "../hooks/useProjects";
+import CloseIcon from '../icons/CloseIcon';
 
 const DeleteModal = () => {
   const { deleteModal, handleDeleteModal, deleteTask } = useProjects();
@@ -25,7 +26,6 @@ const DeleteModal = () => {
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
@@ -50,18 +50,7 @@ const DeleteModal = () => {
                   onClick={handleDeleteModal}
                 >
                   <span className="sr-only">Cerrar</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <CloseIcon />
                 </button>
               </div>
 

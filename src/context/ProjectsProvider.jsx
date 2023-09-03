@@ -18,6 +18,7 @@ export const ProjectsProvider = ({ children }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [member, setMember] = useState({});
   const [deleteMemberModal, setDeleteMemberModal] = useState(false);
+  const [profileModal, setProfileModal] = useState(false)
   const [search, setSearch] = useState(false);
 
   const { auth } = useAuth()
@@ -27,6 +28,7 @@ export const ProjectsProvider = ({ children }) => {
   useEffect(() => {
     const getProjects = async () => {
       try {
+        setLoading(true);
         const token = localStorage.getItem("token");
         if (!token) return;
 
@@ -41,10 +43,12 @@ export const ProjectsProvider = ({ children }) => {
         setProjects(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     getProjects();
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     socket = io(import.meta.env.VITE_SERVER_URL);
@@ -376,6 +380,10 @@ export const ProjectsProvider = ({ children }) => {
     setMember(member);
   };
 
+  const handleProfileModal = () => {
+    setProfileModal(!profileModal);
+  }
+
   const deleteMember = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -505,6 +513,9 @@ export const ProjectsProvider = ({ children }) => {
         handleUpdateTask,
         deleteModal,
         handleDeleteModal,
+        profileModal,
+        handleProfileModal,
+        setProfileModal,
         deleteTask,
         submitMember,
         member,

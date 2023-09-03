@@ -6,11 +6,11 @@ export default function Sidebar() {
   //console.log(auth)
 
   return (
-    <aside className="w-full flex flex-col items-center justify-center md:block md:w-2/5 lg:w-1/5 xl:w-1/6 px-3 py-5 border-r">
-      <p className="text-xl font-bold">Hi, {auth.name} </p>
+    <aside className="w-full max-md:mt-20 max-md:flex-1 flex flex-col items-center justify-end md:justify-center md:block md:w-2/5 lg:w-1/5 xl:w-1/6 px-3 py-5 border-r">
+      <p className="text-xl font-bold max-md:hidden">Hi, {auth.name} </p>
 
       <Link
-        className="my-3 w-28 flex justify-between items-center text-white text-sm bg-sky-600 p-3  uppercase font-bold rounded-full"
+        className="my-4 w-28 flex justify-between items-center text-white text-sm bg-sky-500 p-3  uppercase font-bold rounded-full"
         to={"new-project"}
       >
         <svg

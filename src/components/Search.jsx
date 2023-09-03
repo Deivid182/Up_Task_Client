@@ -7,16 +7,17 @@ function classNames(...classes) {
 }
 
 const Search = () => {
-    
+
     const [seek, setSeek] = useState("")
 
     const { search, handleSearch, projects } = useProjects()
 
-    const filteredProjects = seek === "" ? [] : projects.filter(project => project.name.toLowerCase().includes(seek.toLowerCase()))
+    const filteredProjects = seek === "" ? [] :
+        projects.filter(project => project.name.toLowerCase().includes(seek.toLowerCase()))
 
     return (
-        <Transition.Root show={ search } as={Fragment} afterLeave={ () => setSeek("") }>
-            <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto mt-20 p-4 sm:p-20 md:p-20" onClose={ handleSearch }>
+        <Transition.Root show={search} as={Fragment} afterLeave={() => setSeek("")}>
+            <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto mt-20 p-4 sm:p-20 md:p-20" onClose={handleSearch}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -38,32 +39,32 @@ const Search = () => {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                 >
-                <Combobox
-                    as="div"
-                    className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
-                    onChange={(project) => (window.location = `/projects/${project._id}`)}
-                >
-                    <div className="relative">
-                        <Combobox.Input
-                            className="h-12 w-full border-0 bg-transparent pl-4 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
-                            placeholder="Buscar..."
-                            onChange={e => setSeek(e.target.value)}
-                        />
-                    </div>
+                    <Combobox
+                        as="div"
+                        className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
+                        onChange={(project) => (window.location = `/projects/${project._id}`)}
+                    >
+                        <div className="relative">
+                            <Combobox.Input
+                                className="h-12 w-full outline-none focus:outline-none border-0 bg-transparent pl-4 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
+                                placeholder="Buscar..."
+                                onChange={e => setSeek(e.target.value)}
+                            />
+                        </div>
 
-                    {filteredProjects.length > 0 && (
-                        <Combobox.Options static className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800">
-                          {filteredProjects.map(project => (
-                            <Combobox.Option
-                              key={project._id}
-                              value={project}
-                              className={({active}) => classNames("cursor-default select-none px-4 py-2 ", active && "bg-sky-600 text-white")}
-                            >
-                              {project.name}
-                            </Combobox.Option>
-                          ))}
-                        </Combobox.Options>
-                    )} 
+                        {filteredProjects.length > 0 && (
+                            <Combobox.Options static className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800">
+                                {filteredProjects.map(project => (
+                                    <Combobox.Option
+                                        key={project._id}
+                                        value={project}
+                                        className={({ active }) => classNames("cursor-default select-none px-4 py-2 ", active && "bg-sky-600 text-white")}
+                                    >
+                                        {project.name}
+                                    </Combobox.Option>
+                                ))}
+                            </Combobox.Options>
+                        )}
                     </Combobox>
                 </Transition.Child>
             </Dialog>
